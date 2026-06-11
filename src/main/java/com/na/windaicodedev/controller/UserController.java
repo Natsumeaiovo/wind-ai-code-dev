@@ -1,36 +1,36 @@
 package com.na.windaicodedev.controller;
 
-import cn.hutool.core.bean.BeanUtil;
-import com.mybatisflex.core.paginate.Page;
-import com.na.windaicodedev.common.DeleteRequest;
-import com.na.windaicodedev.exception.BusinessException;
-import com.na.windaicodedev.model.dto.*;
-import com.na.windaicodedev.model.vo.UserVO;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import java.util.List;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.na.windaicodedev.annotation.AuthCheck;
-import com.na.windaicodedev.common.BaseResponse;
-import com.na.windaicodedev.common.ResultUtils;
-import com.na.windaicodedev.constant.UserConstant;
-import com.na.windaicodedev.exception.ErrorCode;
-import com.na.windaicodedev.exception.ThrowUtils;
-import com.na.windaicodedev.model.entity.User;
-import com.na.windaicodedev.model.enums.UserRoleEnum;
-import com.na.windaicodedev.model.vo.LoginUserVO;
-import com.na.windaicodedev.service.UserService;
-
-import jakarta.annotation.Resource;
-import jakarta.servlet.http.HttpServletRequest;
-
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import com.mybatisflex.core.paginate.Page;
+import com.na.windaicodedev.annotation.AuthCheck;
+import com.na.windaicodedev.common.BaseResponse;
+import com.na.windaicodedev.common.DeleteRequest;
+import com.na.windaicodedev.common.ResultUtils;
+import com.na.windaicodedev.constant.UserConstant;
+import com.na.windaicodedev.exception.BusinessException;
+import com.na.windaicodedev.exception.ErrorCode;
+import com.na.windaicodedev.exception.ThrowUtils;
+import com.na.windaicodedev.model.dto.UserAddRequest;
+import com.na.windaicodedev.model.dto.UserLoginRequest;
+import com.na.windaicodedev.model.dto.UserQueryRequest;
+import com.na.windaicodedev.model.dto.UserRegisterRequest;
+import com.na.windaicodedev.model.dto.UserUpdateRequest;
+import com.na.windaicodedev.model.entity.User;
+import com.na.windaicodedev.model.vo.LoginUserVO;
+import com.na.windaicodedev.model.vo.UserVO;
+import com.na.windaicodedev.service.UserService;
+
+import cn.hutool.core.bean.BeanUtil;
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * 用户 控制层。

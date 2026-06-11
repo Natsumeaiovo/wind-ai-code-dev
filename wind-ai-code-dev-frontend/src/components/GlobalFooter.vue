@@ -1,7 +1,7 @@
 <template>
   <a-layout-footer class="global-footer">
     CodeSail by
-    <a href="https://natsumeaiovo.github.io" target="_blank" rel="noreferrer"> serein </a>
+    <a href="https://natsumeaiovo.github.io" target="_blank" rel="noreferrer"> N/A </a>
   </a-layout-footer>
 </template>
 

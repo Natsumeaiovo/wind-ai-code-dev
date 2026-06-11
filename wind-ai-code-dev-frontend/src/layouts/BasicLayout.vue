@@ -31,13 +31,15 @@ import GlobalHeader from '@/components/GlobalHeader.vue'
 
 .basic-layout__content {
   flex: 1;
+  display: flex;
   padding: 16px;
   background: #f5f5f5;
 }
 
 .basic-layout__content-inner {
+  flex: 1;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1600px;
   margin: 0 auto;
 }
 

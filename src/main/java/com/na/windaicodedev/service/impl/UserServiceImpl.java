@@ -57,11 +57,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         if (!userPassword.equals(checkPassword)) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "两次密码输入不一致");
         }
-        // 2. 查询用户是否已存在
-        QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper.eq("userAccount", userAccount);
-        long count = this.mapper.selectCountByQuery(queryWrapper);
-        if (count > 0) {
+
+        // 2. 查询用户是否已存在（包括已逻辑删除的记录，避免唯一键冲突）
+        User existUser = this.mapper.selectUserByAccountWithDeleted(userAccount);
+        
+        if (existUser != null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "账号已存在");
         }
         // 3. 加密密码
@@ -71,6 +71,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         user.setUserAccount(userAccount);
         user.setUserPassword(encryptPassword);
         user.setUserName("无名");
+        user.setUserAvatar("https://kusanagi.oss-cn-beijing.aliyuncs.com/touxiang/defaultava.png"); 
         user.setUserRole(UserRoleEnum.USER.getValue());
         boolean save = this.save(user);
         if (!save) {
@@ -94,11 +95,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         if (StrUtil.hasBlank(userAccount, userPassword)) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "参数不能为空");
         }
-        if (userAccount.length() < 4 || userAccount.length() > 16) {
-            throw new BusinessException(ErrorCode.PARAMS_ERROR, "账号有误");
-        }
-        if (userPassword.length() < 8 || userPassword.length() > 16) {
-            throw new BusinessException(ErrorCode.PARAMS_ERROR, "密码错误");
+        if (userAccount.length() < 4 || userAccount.length() > 16
+            || userPassword.length() < 8 || userPassword.length() > 16) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR, "账号或密码错误");
         }
 
         // 2. 查询用户是否存在

@@ -5,7 +5,7 @@ import { message } from 'ant-design-vue'
 const myAxios = axios.create({
   baseURL: 'http://localhost:8123/api',
   timeout: 60000,
-  withCredentials: true,    // 允许携带cookie
+  withCredentials: true, // 允许携带cookie
 })
 
 // 全局请求拦截器
