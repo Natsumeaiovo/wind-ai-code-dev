@@ -47,7 +47,7 @@
 
 <script lang="ts" setup>
 import { deleteUser, listUserVoByPage } from '@/api/userController';
-import { message, type TablePaginationConfig } from 'ant-design-vue';
+import { Modal, message, type TablePaginationConfig } from 'ant-design-vue';
 import dayjs from 'dayjs';
 import { computed, onMounted, reactive, ref } from 'vue';
 const columns = [
@@ -150,13 +150,24 @@ const doDelete = async (id: number) => {
   if (!id) {
     return;
   }
-  const res = await deleteUser({ id });
-  if (res.data.data) {
-    message.success('删除成功');
-    fetchData();
-  } else {
-    message.error('删除失败，' + res.data.message);
-  }
+  // 确认删除
+  Modal.confirm({
+    title: '删除确认',
+    content: '确定删除用户？',
+    centered: true,
+    okText: '确定',
+    cancelText: '取消',
+    okType: 'danger',
+    async onOk() {
+      const res = await deleteUser({ id });
+      if (res.data.data) {
+        message.success('删除成功');
+        fetchData();
+      } else {
+        message.error('删除失败，' + res.data.message);
+      }
+    },
+  });
 }
 
 

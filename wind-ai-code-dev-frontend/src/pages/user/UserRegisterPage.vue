@@ -186,7 +186,7 @@ const disabled = computed(() => {
   font-size: clamp(40px, 6vw, 66px);
   font-weight: 700;
   letter-spacing: -0.07em;
-  line-height: 0.98;
+  line-height: 1.2;
 }
 
 .register-hero__desc {
