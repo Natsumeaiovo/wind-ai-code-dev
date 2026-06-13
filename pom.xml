@@ -62,6 +62,12 @@
             <artifactId>langchain4j-open-ai-spring-boot-starter</artifactId>
             <version>1.16.2-beta26</version>
         </dependency>
+        <!-- langchain4j Flux -->
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-reactor</artifactId>
+            <version>1.16.2-beta26</version>
+        </dependency>
         <!-- hutool工具类库 -->
         <dependency>
             <groupId>cn.hutool</groupId>
